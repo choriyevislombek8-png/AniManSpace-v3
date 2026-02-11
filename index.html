@@ -3,114 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>AniManSpace | Anime Universe</title>
+    <title>AniManSpace | Neo Tokyo Universe</title>
     
     <!-- FONTS -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
     
     <style>
-        /* ===== GLOBAL STYLES ===== */
+        /* ===== RESET & GLOBAL ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: radial-gradient(ellipse at 40% 40%, #0b0710, #03050c, #010101);
-            color: white;
-            line-height: 1.6;
+        html, body {
+            width: 100%;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* ===== ANIMATED STARS BACKGROUND ===== */
-        .stars, .twinkling, .clouds {
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(ellipse at 50% 30%, #0c0112, #08010c, #020005);
+            color: white;
+            line-height: 1.6;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* ===== KOSMIK YULDUZLI FON ===== */
+        .galaxy-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            z-index: -1;
+            z-index: -2;
+            background: radial-gradient(ellipse at 70% 40%, #1a0933, #0a051a, #030107);
         }
 
-        .stars {
-            background: black url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMiIgaGVpZ2h0PSIyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxjaXJjbGUgY3g9IjEiIGN5PSIxIiByPSIxIiBmaWxsPSJ3aGl0ZSIvPjwvc3ZnPg==') repeat;
-            animation: stars 200s linear infinite;
-            opacity: 0.8;
-        }
-
-        .twinkling {
-            background: transparent url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNCIgaGVpZ2h0PSI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxjaXJjbGUgY3g9IjIiIGN5PSIyIiByPSIxIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjgiLz48L3N2Zz4=') repeat;
-            animation: twinkle 8s infinite;
-            opacity: 0.3;
-        }
-
-        @keyframes stars {
-            from { transform: translateY(0); }
-            to { transform: translateY(-2000px); }
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.2; }
-            50% { opacity: 0.6; }
-        }
-
-        /* ===== PARTICLES ===== */
-        .particles {
+        .stars-layer {
             position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
+            background: transparent;
+            pointer-events: none;
         }
 
-        .particle {
+        .star {
             position: absolute;
-            width: 2px;
-            height: 2px;
-            background: rgba(0, 255, 255, 0.5);
+            background: white;
             border-radius: 50%;
-            animation: float 20s infinite;
-            box-shadow: 0 0 15px cyan;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            animation: twinkle 3s infinite ease-in-out;
         }
 
-        @keyframes float {
-            0% { transform: translateY(0) translateX(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .nebula {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 40%, rgba(255, 0, 255, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(0, 255, 255, 0.08) 0%, transparent 45%),
+                        radial-gradient(circle at 40% 80%, rgba(128, 0, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         /* ===== GLASSMORPHISM ===== */
-        .glass-card {
-            background: rgba(10, 10, 30, 0.3);
+        .glass {
+            background: rgba(15, 5, 25, 0.3);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .glass-card:hover {
+        .glass:hover {
             border-color: rgba(255, 0, 255, 0.4);
-            box-shadow: 0 0 30px rgba(255, 0, 255, 0.2);
-            transform: translateY(-5px);
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.25);
+            transform: translateY(-8px);
+            background: rgba(25, 10, 35, 0.5);
         }
 
         /* ===== NEON TEXT ===== */
-        .neon-text {
-            text-shadow: 0 0 10px rgba(255, 0, 255, 0.7),
-                         0 0 20px rgba(255, 0, 255, 0.5),
-                         0 0 30px rgba(0, 255, 255, 0.3);
+        .neon-pink {
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff;
         }
 
-        .cyan-neon {
-            text-shadow: 0 0 10px cyan, 0 0 20px rgba(0, 255, 255, 0.5);
+        .neon-cyan {
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff;
         }
 
-        .pink-neon {
-            text-shadow: 0 0 10px #ff00ff, 0 0 20px rgba(255, 0, 255, 0.5);
+        .gradient-text {
+            background: linear-gradient(45deg, #ffa6ff, #ff66cc, #aaffff, #66ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 300% 300%;
+            animation: gradientFlow 8s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         /* ===== CONTAINER ===== */
@@ -130,500 +136,526 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            padding: 20px;
             position: relative;
         }
 
         .hero-title {
-            font-size: clamp(40px, 12vw, 120px);
-            font-weight: 800;
-            letter-spacing: 8px;
+            font-size: clamp(48px, 15vw, 140px);
+            font-weight: 900;
+            letter-spacing: 12px;
             margin-bottom: 20px;
-            background: linear-gradient(45deg, #fff, #ff00ff, #00ffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: titleGlow 3s infinite alternate;
+            animation: heroGlow 3s infinite alternate;
         }
 
-        @keyframes titleGlow {
-            from { filter: drop-shadow(0 0 20px rgba(255,0,255,0.3)); }
-            to { filter: drop-shadow(0 0 40px rgba(0,255,255,0.5)); }
+        @keyframes heroGlow {
+            from { filter: drop-shadow(0 0 30px rgba(255, 0, 255, 0.5)); }
+            to { filter: drop-shadow(0 0 60px rgba(0, 255, 255, 0.7)); }
         }
 
         .hero-subtitle {
-            font-size: clamp(18px, 5vw, 32px);
-            color: rgba(255, 255, 255, 0.9);
+            font-size: clamp(20px, 5vw, 36px);
+            color: rgba(255, 255, 255, 0.95);
             margin-bottom: 20px;
-            letter-spacing: 4px;
+            letter-spacing: 6px;
+            font-weight: 600;
+            text-transform: uppercase;
         }
 
-        .hero-description {
-            font-size: clamp(14px, 4vw, 20px);
-            color: rgba(255, 255, 255, 0.7);
+        .hero-desc {
+            font-size: clamp(16px, 4vw, 22px);
+            color: rgba(255, 255, 255, 0.8);
             max-width: 800px;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             line-height: 1.8;
         }
 
-        /* ===== BUTTONS ===== */
+        /* ===== NEON BUTTONS ===== */
         .btn-group {
             display: flex;
-            gap: 20px;
+            gap: 30px;
             flex-wrap: wrap;
             justify-content: center;
         }
 
         .btn {
-            padding: 16px 48px;
+            padding: 18px 54px;
             font-size: 18px;
-            font-weight: 600;
+            font-weight: 700;
             border: none;
-            border-radius: 50px;
+            border-radius: 60px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.4s;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
             position: relative;
             overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.6s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn-primary {
-            background: linear-gradient(45deg, #ff00ff, #ff66cc);
+            background: linear-gradient(45deg, #ff1aff, #b300b3);
             color: white;
-            box-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
         }
 
         .btn-secondary {
             background: transparent;
             color: #00ffff;
             border: 2px solid #00ffff;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
         }
 
         .btn:hover {
-            transform: scale(1.05);
+            transform: scale(1.07);
             box-shadow: 0 0 50px currentColor;
         }
 
         .btn-primary:hover {
-            background: linear-gradient(45deg, #ff66cc, #ff00ff);
+            background: linear-gradient(45deg, #ff4dff, #ff00ff);
         }
 
-        /* ===== AI COMPANION CARD ===== */
+        .btn-secondary:hover {
+            background: rgba(0, 255, 255, 0.1);
+            border-color: #fff;
+            color: white;
+        }
+
+        /* ===== AI COMPANION ===== */
+        .ai-section {
+            margin: 100px 0;
+        }
+
         .ai-card {
             display: flex;
             align-items: center;
-            gap: 30px;
-            padding: 40px;
-            margin: 80px 0;
-            background: rgba(20, 10, 40, 0.4);
-            backdrop-filter: blur(12px);
+            gap: 50px;
+            padding: 50px;
+            background: rgba(20, 5, 30, 0.5);
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 0, 255, 0.3);
-            border-radius: 32px;
-            box-shadow: 0 0 50px rgba(255, 0, 255, 0.2);
+            border-radius: 40px;
             flex-wrap: wrap;
+            box-shadow: 0 0 60px rgba(255, 0, 255, 0.2);
         }
 
-        .ai-image {
-            width: 150px;
-            height: 150px;
+        .ai-avatar {
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, #ff44ff, #9900ff);
             border-radius: 50%;
-            background: radial-gradient(circle, #ff00ff80, #00ffff80);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 80px;
-            animation: floatImage 6s infinite alternate;
+            font-size: 90px;
+            animation: float 6s infinite alternate;
+            box-shadow: 0 0 50px rgba(255, 0, 255, 0.7);
+            border: 3px solid rgba(255, 255, 255, 0.3);
         }
 
-        @keyframes floatImage {
-            from { transform: translateY(0); }
-            to { transform: translateY(-20px); }
+        @keyframes float {
+            from { transform: translateY(0) rotate(0deg); }
+            to { transform: translateY(-25px) rotate(5deg); }
         }
 
         .ai-bubble {
             flex: 1;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 30px;
-            border-left: 5px solid #00ffff;
+            background: rgba(10, 5, 20, 0.7);
+            padding: 35px;
+            border-radius: 35px;
+            border-left: 6px solid #00ffff;
             position: relative;
             backdrop-filter: blur(5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        .ai-bubble:before {
+        .ai-bubble::before {
             content: '';
             position: absolute;
             left: -20px;
-            top: 30px;
+            top: 40px;
             width: 0;
             height: 0;
-            border: 10px solid transparent;
+            border: 15px solid transparent;
             border-right-color: #00ffff;
         }
 
         .ai-text {
-            font-size: 24px;
-            margin-bottom: 20px;
+            font-size: 26px;
+            margin-bottom: 25px;
             color: white;
+            font-weight: 600;
+            line-height: 1.5;
         }
 
-        /* ===== FEATURE CARDS ===== */
+        .ai-btn {
+            padding: 14px 42px;
+            font-size: 18px;
+            background: linear-gradient(45deg, #00ffff, #0099ff);
+            color: black;
+            font-weight: 700;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+        }
+
+        .ai-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px cyan;
+        }
+
+        /* ===== SECTION TITLE ===== */
         .section-title {
             font-size: 48px;
             text-align: center;
-            margin: 60px 0 40px;
-            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            margin: 80px 0 50px;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff80ff, #80ffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            letter-spacing: 4px;
         }
 
+        /* ===== FEATURES GRID ===== */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
+            gap: 35px;
+            margin: 50px 0;
         }
 
         .feature-card {
-            padding: 40px 30px;
+            padding: 45px 30px;
             text-align: center;
-            background: rgba(10, 10, 30, 0.4);
+            background: rgba(15, 8, 25, 0.5);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            transition: 0.3s;
+            border-radius: 30px;
+            transition: 0.4s;
         }
 
         .feature-card:hover {
-            border-color: #ff00ff;
-            box-shadow: 0 0 40px rgba(255, 0, 255, 0.3);
-            transform: translateY(-10px);
+            border-color: #ff66ff;
+            box-shadow: 0 0 50px rgba(255, 0, 255, 0.4);
+            transform: translateY(-12px);
         }
 
         .feature-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
+            font-size: 64px;
+            margin-bottom: 25px;
         }
 
         .feature-title {
-            font-size: 24px;
+            font-size: 28px;
             margin-bottom: 15px;
-            color: #fff;
+            color: white;
+            font-weight: 700;
         }
 
         .feature-desc {
             color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
+            font-size: 18px;
+            line-height: 1.7;
         }
 
         /* ===== TRENDING GRID ===== */
         .trending-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 25px;
-            margin: 40px 0;
+            margin: 50px 0;
         }
 
         .anime-card {
-            background: rgba(10, 10, 30, 0.6);
-            border-radius: 16px;
+            background: rgba(20, 10, 30, 0.7);
+            border-radius: 20px;
             overflow: hidden;
-            transition: 0.3s;
+            transition: 0.4s;
             cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .anime-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+            transform: translateY(-12px);
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+            border-color: cyan;
         }
 
         .anime-poster {
             width: 100%;
             aspect-ratio: 2/3;
-            background: linear-gradient(45deg, #1a1a3a, #2a1a4a);
+            background: linear-gradient(145deg, #2a1a3a, #1a0a2a);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 48px;
+            font-size: 54px;
         }
 
         .anime-info {
-            padding: 15px;
+            padding: 20px 15px;
         }
 
         .anime-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 5px;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: white;
         }
 
         .anime-ep {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
+            font-size: 15px;
+            color: rgba(0, 255, 255, 0.8);
         }
 
-        /* ===== COMMUNITY SECTION ===== */
+        /* ===== COMMUNITY ===== */
         .community-section {
             text-align: center;
-            padding: 80px 40px;
-            margin: 60px 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255,0,255,0.1), transparent);
-            border-radius: 48px;
+            padding: 90px 40px;
+            margin: 80px 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 0, 255, 0.15), transparent 70%);
+            border-radius: 60px;
         }
 
         .community-title {
-            font-size: 48px;
-            margin-bottom: 20px;
+            font-size: 54px;
+            margin-bottom: 30px;
+            font-weight: 800;
+            text-transform: uppercase;
         }
 
         .community-features {
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 50px;
             margin: 40px 0;
             flex-wrap: wrap;
         }
 
         .community-feature {
-            font-size: 18px;
+            font-size: 20px;
             color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
         }
 
-        .community-feature:before {
+        .community-feature::before {
             content: '✦';
-            margin-right: 10px;
-            color: #ff00ff;
+            margin-right: 12px;
+            color: #ff66ff;
+            font-size: 24px;
         }
 
         .btn-community {
-            padding: 20px 60px;
-            font-size: 24px;
+            padding: 22px 70px;
+            font-size: 26px;
             background: linear-gradient(45deg, #ff00ff, #00ffff);
             color: black;
-            font-weight: 800;
-            margin-top: 30px;
+            font-weight: 900;
+            margin-top: 40px;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.4s;
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 6px;
+        }
+
+        .btn-community:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 70px cyan;
         }
 
         /* ===== FOOTER ===== */
         .footer {
-            margin-top: 100px;
-            padding: 60px 40px 30px;
-            background: rgba(5, 5, 15, 0.8);
+            margin-top: 120px;
+            padding: 70px 50px 40px;
+            background: rgba(8, 3, 12, 0.8);
             backdrop-filter: blur(20px);
             border-top: 1px solid rgba(255, 0, 255, 0.3);
-            border-radius: 48px 48px 0 0;
+            border-radius: 50px 50px 0 0;
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 50px;
+            margin-bottom: 50px;
         }
 
         .footer-logo {
-            font-size: 24px;
-            font-weight: 800;
+            font-size: 28px;
+            font-weight: 900;
             background: linear-gradient(45deg, #ff00ff, #00ffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
         }
 
         .footer-links {
             display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 15px;
         }
 
         .footer-link {
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             transition: 0.3s;
+            font-size: 18px;
         }
 
         .footer-link:hover {
-            color: #ff00ff;
-            text-shadow: 0 0 10px #ff00ff;
+            color: #ff66ff;
+            text-shadow: 0 0 15px #ff00ff;
+            transform: translateX(5px);
         }
 
         .social-icons {
             display: flex;
-            gap: 20px;
-            font-size: 24px;
+            gap: 25px;
+            font-size: 32px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            color: rgba(255, 255, 255, 0.7);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            color: #00ffff;
+            text-shadow: 0 0 25px cyan;
+            transform: scale(1.2);
         }
 
         .copyright {
             text-align: center;
-            padding-top: 30px;
+            padding-top: 40px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.5);
+            font-size: 16px;
         }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .container { padding: 15px; }
-            .hero-title { font-size: 40px; }
-            .btn { padding: 12px 32px; }
+            .hero-title { font-size: 70px; }
             .ai-card { flex-direction: column; text-align: center; }
-            .ai-bubble:before { display: none; }
-            .section-title { font-size: 32px; }
+            .ai-bubble::before { display: none; }
+            .section-title { font-size: 40px; }
+            .community-title { font-size: 42px; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 50px; letter-spacing: 6px; }
+            .btn { padding: 14px 36px; }
+            .ai-avatar { width: 140px; height: 140px; font-size: 70px; }
+            .ai-text { font-size: 22px; }
             .trending-grid { grid-template-columns: repeat(2, 1fr); }
+            .btn-community { padding: 18px 40px; font-size: 22px; }
         }
 
         @media (max-width: 480px) {
+            .hero-title { font-size: 40px; }
+            .hero-subtitle { font-size: 18px; }
+            .btn { width: 100%; }
             .trending-grid { grid-template-columns: 1fr; }
-            .community-features { flex-direction: column; gap: 15px; }
+            .community-features { flex-direction: column; gap: 20px; }
+            .footer-content { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <!-- YULDUZLI FON -->
-    <div class="stars"></div>
-    <div class="twinkling"></div>
-    
-    <!-- PARTICLE EFFECT -->
-    <div class="particles" id="particles"></div>
+    <!-- KOSMIK FON LAYERLARI -->
+    <div class="galaxy-bg"></div>
+    <div class="nebula"></div>
+    <div class="stars-layer" id="starsLayer"></div>
 
     <div class="container">
         <!-- ===== HERO SECTION ===== -->
         <section class="hero">
-            <h1 class="hero-title">AniManSpace</h1>
-            <h2 class="hero-subtitle cyan-neon">✦ Enter Your Anime Universe ✦</h2>
-            <p class="hero-description">
+            <h1 class="hero-title gradient-text">AniManSpace</h1>
+            <h2 class="hero-subtitle neon-cyan">✦ Enter Your Anime Universe ✦</h2>
+            <p class="hero-desc">
                 Stream anime, read manhwa, level up, and talk with your personal AI space guide.
             </p>
             <div class="btn-group">
-                <button class="btn btn-primary" onclick="alert('🚀 Universga sayohat boshlandi!')">
+                <button class="btn btn-primary" onclick="alert('🚀 Neo Tokyo sektoriga xush kelibsiz!')">
                     ▶ Start Exploring
                 </button>
-                <button class="btn btn-secondary" onclick="alert('🤖 AI hamrohingiz bilan tanishing!')">
+                <button class="btn btn-secondary" onclick="alert('🤖 AI hamrohingiz: Salom, kosmonavt!')">
                     🤖 Talk to AI
                 </button>
             </div>
         </section>
 
-        <!-- ===== AI COMPANION SECTION ===== -->
-        <section class="ai-card">
-            <div class="ai-image">
-                ✦
-            </div>
-            <div class="ai-bubble">
-                <div class="ai-text">
-                    "Salom, kosmonavt 🌌 Qaysi olamga sayohat qilamiz?"
+        <!-- ===== AI COMPANION ===== -->
+        <section class="ai-section">
+            <div class="ai-card glass">
+                <div class="ai-avatar">
+                    ✦
                 </div>
-                <button class="btn btn-primary" style="padding: 12px 32px; font-size: 16px;">
-                    Open AI Chat
-                </button>
+                <div class="ai-bubble">
+                    <div class="ai-text">
+                        "Salom, kosmonavt 🌌 Qaysi olamga sayohat qilamiz?"
+                    </div>
+                    <button class="ai-btn" onclick="alert('🤖 AI Chat tez kunda...')">
+                        Open AI Chat
+                    </button>
+                </div>
             </div>
         </section>
 
-        <!-- ===== FEATURES SECTION ===== -->
+        <!-- ===== FEATURES ===== -->
         <h2 class="section-title">✦ Galaxy Features ✦</h2>
         <div class="features-grid">
-            <div class="feature-card glass-card">
+            <div class="feature-card glass">
                 <div class="feature-icon">🎬</div>
                 <h3 class="feature-title">Anime Streaming</h3>
-                <p class="feature-desc">Watch trending and classic anime in high quality.</p>
+                <p class="feature-desc">Watch trending and classic anime in 4K quality with zero ads.</p>
             </div>
-            <div class="feature-card glass-card">
+            <div class="feature-card glass">
                 <div class="feature-icon">📖</div>
                 <h3 class="feature-title">Manhwa Reader</h3>
-                <p class="feature-desc">Smooth vertical scroll reader for your favorite series.</p>
+                <p class="feature-desc">Smooth vertical scroll reader with 1000+ manhwa and webtoons.</p>
             </div>
-            <div class="feature-card glass-card">
+            <div class="feature-card glass">
                 <div class="feature-icon">🎮</div>
                 <h3 class="feature-title">Level & Rewards</h3>
-                <p class="feature-desc">Earn XP, unlock badges, and grow your anime journey.</p>
+                <p class="feature-desc">Earn XP, unlock badges, frames, and exclusive anime rewards.</p>
             </div>
         </div>
 
         <!-- ===== TRENDING ANIME ===== -->
         <h2 class="section-title">✦ Trending Now ✦</h2>
         <div class="trending-grid">
-            <!-- 12 ta anime karta -->
-            <div class="anime-card">
-                <div class="anime-poster">🎌</div>
-                <div class="anime-info">
-                    <div class="anime-title">Solo Leveling</div>
-                    <div class="anime-ep">EP 24</div>
-                </div>
-            </div>
             <div class="anime-card">
                 <div class="anime-poster">⚔️</div>
                 <div class="anime-info">
-                    <div class="anime-title">Demon Slayer</div>
-                    <div class="anime-ep">EP 55</div>
-                </div>
-            </div>
-            <div class="anime-card">
-                <div class="anime-poster">🤖</div>
-                <div class="anime-info">
-                    <div class="anime-title">Chainsaw Man</div>
-                    <div class="anime-ep">EP 12</div>
-                </div>
-            </div>
-            <div class="anime-card">
-                <div class="anime-poster">🌊</div>
-                <div class="anime-info">
-                    <div class="anime-title">Jujutsu Kaisen</div>
-                    <div class="anime-ep">EP 47</div>
-                </div>
-            </div>
-            <div class="anime-card">
-                <div class="anime-poster">✨</div>
-                <div class="anime-info">
-                    <div class="anime-title">One Piece</div>
-                    <div class="anime-ep">EP 1089</div>
-                </div>
-            </div>
-            <div class="anime-card">
-                <div class="anime-poster">⚡</div>
-                <div class="anime-info">
-                    <div class="anime-title">Naruto</div>
-                    <div class="anime-ep">EP 720</div>
+                    <div class="anime-title">Solo Leveling</div>
+                    <div class="anime-ep">EP 24 • 4K</div>
                 </div>
             </div>
             <div class="anime-card">
                 <div class="anime-poster">🔥</div>
                 <div class="anime-info">
-                    <div class="anime-title">Attack on Titan</div>
-                    <div class="anime-ep">EP 87</div>
-                </div>
-            </div>
-            <div class="anime-card">
-                <div class="anime-poster">💀</div>
-                <div class="anime-info">
-                    <div class="anime-title">Death Note</div>
-                    <div class="anime-ep">EP 37</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== COMMUNITY SECTION ===== -->
-        <section class="community-section glass-card">
-            <h2 class="community-title pink-neon">Join the AniManSpace Community</h2>
-            <div class="community-features">
-                <span class="community-feature">Chat with fans</span>
-                <span class="community-feature">Share recommendations</span>
-                <span class="community-feature">Weekly rankings</span>
-            </div>
-            <button class="btn btn-community" onclick="window.open('https://t.me/animanspace', '_blank')">
-                ✦ Join Community ✦
-            </button>
-        </section>
-
-        <!-- ===== FOOTER ===== -->
-        <footer class="footer">
-            <div class="footer-content">
-                <div>
-                    <div class="footer-logo">AniManSpace</div>
-                    <p style="color: rgba(255,255,255,0.6); margin-top: 20px;">
-                        Your universe. Your story. Your adventure.
-                    </p>
-                </div>
-                <div>
-                    <h4 style="margin-bottom: 20px; color: #ff00ff;">Explore</h4>
-                    <div class="footer-links">
-                        <a href="#" class="footer-link">Anime</a>
-                        <a href="#" class="footer-link">Manhwa</a>
-                        <a href="#" class="footer-link">Community</a
+                    <div class="anime-title">Demon Slayer</di
