@@ -706,4 +706,419 @@
         }
 
         .footer-content-ultra {
-            disp
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+        .footer-logo-ultra {
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 25px;
+            letter-spacing: 6px;
+        }
+        .footer-desc {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 18px;
+            line-height: 1.8;
+            max-width: 350px;
+        }
+
+        .footer-title {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: #ff99ff;
+            text-shadow: 0 0 15px #ff00ff;
+        }
+        .footer-link-ultra {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 18px;
+        }
+
+        .footer-link-ultra:hover {
+            color: #00ffff;
+            text-shadow: 0 0 15px cyan;
+            transform: translateX(8px);
+        }
+        .social-icons-ultra {
+            display: flex;
+            gap: 30px;
+            font-size: 36px;
+            margin-top: 25px;
+        }
+        .social-icon-ultra {
+            color: rgba(255, 255, 255, 0.7);
+            transition: 0.4s;
+            cursor: pointer;
+        }
+        .social-icon-ultra:hover {
+            color: #00ffff;
+            text-shadow: 0 0 30px cyan;
+            transform: scale(1.2);
+        }
+
+        .copyright-ultra {
+            text-align: center;
+            padding-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 18px;
+        }
+        /* ===== RESPONSIVE ULTRA ===== */
+        @media (max-width: 1200px) {
+            .container { padding: 20px; }
+            .hero-title { font-size: 90px; }
+        }
+
+        @media (max-width: 992px) {
+            .header { padding: 15px 30px; }
+            .nav-links { gap: 20px; }
+            .hero-title { font-size: 70px; letter-spacing: 10px; }
+            .ai-card-ultra { flex-direction: column; text-align: center; }
+            .ai-bubble-ultra::before { display: none; }
+            .section-title-ultra { font-size: 48px; }
+        }
+        @media (max-width: 768px) {
+            .header { flex-direction: column; gap: 15px; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 15px; }
+            .hero-title { font-size: 50px; letter-spacing: 8px; }
+            .hero-subtitle { font-size: 20px; }
+            .btn-epic { padding: 15px 40px; }
+            .ai-avatar-ultra { width: 160px; height: 160px; font-size: 80px; }
+            .ai-text-ultra { font-size: 24px; }
+            .trending-grid-ultra { grid-template-columns: repeat(2, 1fr); }
+            .community-title-ultra { font-size: 48px; }
+            .btn-community-ultra { padding: 18px 50px; font-size: 24px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title { font-size: 40px; }
+            .btn-epic { width: 100%; }
+            .trending-grid-ultra { grid-template-columns: 1fr; }
+            .community-features-ultra { flex-direction: column; gap: 20px; }
+            .footer-content-ultra { grid-template-columns: 1fr; }
+        }
+        </style>
+</head>
+<body>
+    <!-- KOSMIK FON ULTRA -->
+    <div class="cosmic-bg"></div>
+    <div class="nebula"></div>
+    <div class="stars-layer" id="starsLayer"></div>
+    <div class="particle-layer" id="particleLayer"></div>
+
+    <!-- HEADER ULTRA -->
+    <header class="header">
+        <a href="index.html" class="logo">AniManSpace</a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link active">Home</a>
+            <a href="#" class="nav-link">Anime</a>
+            <a href="#" class="nav-link">Manhwa</a>
+            <a href="chat.html" class="nav-link">AI Chat</a>
+            <a href="profile.html" class="nav-link">Profile</a>
+            <a href="#" class="nav-link">Community</a>
+            <a href="#" class="nav-link">Store</a>
+        </div>
+        <div class="user-menu">
+            <div class="user-avatar">N</div>
+        </div>
+    </header>
+    <div class="container">
+        <!-- ===== HERO SECTION EPIC ===== -->
+        <section class="hero">
+            <h1 class="hero-title gradient-super">AniManSpace</h1>
+            <h2 class="hero-subtitle neon-cyan">✦ ENTER YOUR ANIME UNIVERSE ✦</h2>
+            <p class="hero-desc">
+                Stream 10000+ anime in 4K, read 5000+ manhwa, level up your profile, 
+                chat with AI guide, and join the largest anime community in the universe.
+                </p>
+            <div class="btn-group">
+                <button class="btn-epic btn-primary-epic" onclick="location.href='#'">
+                    ▶ START EXPLORING
+                </button>
+                <button class="btn-epic btn-secondary-epic" onclick="location.href='chat.html'">
+                    🤖 TALK TO AI
+                </button>
+            </div>
+        </section>
+      !-- ===== AI COMPANION ULTRA ===== -->
+        <section class="ai-ultra">
+            <div class="ai-card-ultra glass-premium">
+                <div class="ai-avatar-ultra">
+                    ✦
+                </div>
+                <div class="ai-bubble-ultra">
+                    <div class="ai-text-ultra">
+                        "Salom, kosmonavt! 🌌 Men Nova - sizning shaxsiy AI hamrohingiz. 
+                        10000+ anime, 5000+ manhwa va sirlar koinotiga sayohatga tayyormisiz?"
+                    </div>
+                    <button class   
+    ="ai-btn-ultra" onclick="location.href='chat.html'">
+                        ✦ OPEN AI CHAT ✦
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FEATURES GALAXY ===== -->
+        <h2 class="section-title-ultra">✦ GALAXY FEATURES ✦</h2>
+        <div class="features-grid-ultra">
+            <div class="feature-card-ultra glass-premium">
+                <div class="feature-icon-ultra">🎬</div>
+                <h3 class="feature-title-ultra">Anime 4K Ultra</h3>
+                <p class="feature-d
+                    esc-ultra">Watch 10000+ anime in crystal clear 4K quality with zero ads. Simulcast & classic included.</p>
+            </div>
+            <div class="feature-card-ultra glass-premium">
+                <div class="feature-icon-ultra">📖</div>
+                <h3 class="feature-title-ultra">Manhwa Webtoon</h3>
+                <p class="feature-desc-ultra">Smooth vertical scroll reader with 5000+ manhwa, webtoons, and novels. Updated daily.</p>
+            </div>
+            <div class="feature-card-ultra glass-premium">
+                <div class="feature-icon-ultra">🎮</div>
+                <h3 class="feature-title-ultra">Level & Badges</h3>
+                <p class="feature-desc-ultra">Earn XP, unlock 100+ badges, premium frames, animated stickers and exclusive rewards.</p>
+            </div>
+            <div class="feature-card-ultra glass-premium">
+                <div class="feature-icon-ultra">🤖</div>
+                <h3 class="feature-title-ultra">AI Guide Nova</h3>
+                <p class="feature-desc-ultra">Your personal anime assistant. Get recommendations, summaries, and chat 24/7.</p>
+            </div>
+            <div class="feature-card-ultra glass-premium">
+                <div class="feature-icon-ultra">👥</div><h3 class="feature-title-ultra">Community Hub</h3>
+                <p class="feature-desc-ultra">Join 100k+ anime fans. Create clubs, share art, discuss episodes, make friends.</p>
+            </div>
+            <div class="feature-card-ultra glass-premium">
+                <div class="feature-icon-ultra">💎</div>
+                <h3 class="feature-title-ultra">Premium Store</h3>
+                <p class="feature-desc-ultra">Exclusive frames, stickers, themes, and animated profile borders. Customize your universe.</p>
+            </div>
+        </div>
+        <!-- ===== TRENDING NOW ===== -->
+        <h2 class="section-title-ultra">✦ TRENDING NOW ✦</h2>
+        <div class="trending-grid-ultra">
+            <!-- 12 ta anime karta -->
+            <div class="anime-card-ultra">
+                <div class="anime-poster-ultra">⚔️</div>
+                <div class="anime-info-ultra">
+                    <div class="anime-title-ultra">Solo Leveling</div>
+                    <div class="anime-ep-ultra">EP 24 • 4K</div>
+                    <div class="anime-rating">★★★★★ 9.8</div>
+                </div>
+            </div>
+            <div class="anime-card-ultra">
+                <div class="anime-poster-ultra">🔥</div>
+                <div class="anime-info-ultra">
+                    <div class="anime-title-ultra">Demon Slayer</div>
+                    <div class="anime-ep-ultra">EP 55 • 4K</div>
+                    <div class="anime-rating">★★★★★ 9.7</div>
+                </div>
+            </div>
+            <div class="anime-card-ultra">
+                <div class="anime-poster-ultra">💀</div>
+                <div class="anime-info-ultra">
+                    <div class="anime-title-ultra">Chainsaw Man</div>
+                    <div class="anime-ep-ultra">EP 12 • 4K</div>
+                    <div class="anime-rating">★★★★☆ 9.2</div>
+                </div>
+                </div>
+            <div class="anime-card-ultra">
+                <div class="anime-poster-ultra">🌊</div>
+                <div class="anime-info-ultra">
+                    <div class="anime-title-ultra">Jujutsu Kaisen</div>
+                    <div class="anime-ep-ultra">EP 47 • 4K</div>
+                    <div class="anime-rating">★★★★★ 9.6</div>
+                </div>
+            </div>
+            <div class="anime-card-ultra">
+                <div class="anime-poster-ultra">🏴‍☠️</div>
+                <div class="anime-info-ultra">
+                    <div class="anime-title-ultra">One Piece</div>
+                    <div class="anime-ep-ultra">EP 1089 • 4K</div>
+                    <div class="anime-rating">★★★★★ 9.9</div>
+                </div>
+            </div>
+            <div class="anime-card-ultra">
+                <div class="anime-poster-ultra">⚡</div>
+                <div class="anime-info-ultra">
+                    <div class="anime-title-ultra">Naruto</div>
+                    <div class="anime-ep-ultra">EP 720 • 4K</div>
+                    <div class="anime-rating">★★★★★ 9.5</div>
+                </div>
+            </div>
+            <div class="anime-card-ultra">
+                <div class="anime-poster-ultra">🛡️</div>
+                <div class="anime-info-ultra">
+                    <div class="anime-title-ultra">Attack on Titan</div>
+                    <div class="anime-ep-ultra">EP 87 • 4K</div>
+                    <div class="anime-rating">★★★★★ 9.8</div>
+                </div>
+            </div>
+            <div class="anime-card-ultra">
+                <div class="anime-poster-ultra">📓</div>
+                <div class="anime-info-ultra">
+                    div class="anime-title-ultra">Death Note</div>
+                    <div class="anime-ep-ultra">EP 37 • 4K</div>
+                    <div class="anime-rating">★★★★★ 9.6</div>
+                </div>
+            </div>
+            <div class="anime-card-ultra">
+                <div class="anime-poster-ultra">🌀</div>
+                <div class="anime-info-ultra">
+                    <div class="anime-title-ultra">Blue Lock</div>
+                    <div class="anime-ep-ultra">EP 24 • 4K</div>
+                    <div class="anime-rating">★★★★☆ 9.1</div>
+                </div>
+            </div>
+            <div class="anime-card-ultra">
+                <div class="anime-poster-ultra">👑</div>
+                <div class="anime-info-ultra">
+                    <div class="anime-title-ultra">One Punch Man</div>
+                    <div class="anime-ep-ultra">EP 24 • 4K</div>
+                    <div class="anime-rating">★★★★☆ 9.0</div>
+                </div>
+            </div>
+            <div class="anime-card-ultra">
+                <div class="anime-poster-ultra">🧙</div>
+                <div class="anime-info-ultra">
+                    <div class="anime-title-ultra">Frieren</div>
+                    <div class="anime-ep-ultra">EP 28 • 4K</div>
+                    <div class="anime-rating">★★★★★ 9.7</div>
+                </div>
+                </div>
+            <div class="anime-card-ultra">
+                <div class="anime-poster-ultra">🤖</div>
+                <div class="anime-info-ultra">
+                    <div class="anime-title-ultra">Vinland Saga</div>
+                    <div class="anime-ep-ultra">EP 48 • 4K</div>
+                    <div class="anime-rating">★★★★★ 9.4</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== COMMUNITY ULTRA ===== -->
+        <section class="community-ultra glass-premium">
+            <h2 class="community-title-ultra neon-pink">✦ JOIN 100K+ FANS ✦</h2>
+            <div class="community-features-ultra">
+                <span class="community-feature-ultra">💬 Live Chat</span>
+                <span class="community-feature-ultra">🏆 Weekly Rankings</span>
+                <span class="community-feature-ultra">🎨 Fan Art</span>
+                <span class="community-feature-ultra">🎁 Giveaways</span>
+                <span class="community-feature-ultra">📺 Watch Parties</span>
+            </div>
+            <button class="btn-community-ultra" onclick="window.open('https://t.me/animanspace', '_blank')">
+                ✦ JOIN NOW ✦
+            </button>
+        </section>
+    <!-- ===== FOOTER ULTRA ===== -->
+        <footer class="footer-ultra">
+            <div class="footer-content-ultra">
+                <div>
+                    <div class="footer-logo-ultra">AniManSpace</div>
+                    <p class="footer-desc">
+                        The ultimate anime & manhwa universe. Stream, read, level up, and connect with millions of fans worldwide. ✦
+                    </p>
+                    <div class="social-icons-ultra">
+                        <i class="fab fa-discord social-icon-ultra"></i>
+                        <i class="f
+                            <i class="fab fa-telegram social-icon-ultra"></i>
+                        <i class="fab fa-twitter social-icon-ultra"></i>
+                        <i class="fab fa-reddit social-icon-ultra"></i>
+                        <i class="fab fa-tiktok social-icon-ultra"></i>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="footer-title">Explore</h3>
+        <div class="footer-links-ultra">
+                        <a href="#" class="footer-link-ultra">Anime Catalog</a>
+                        <a href="#" class="footer-link-ultra">Manhwa List</a>
+                        <a href="#" class="footer-link-ultra">New Releases</a>
+                        <a href="#" class="footer-link-ultra">Popular</a>
+                        <a href="#" class="footer-link-ultra">Upcoming</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="footer-title">Premium</h3>
+                    <div class="footer-links-ultra">
+                        <a href="#" class="footer-link-ultra">Membership</a>
+                        <a href="#" class="footer-link-ultra">Store</a>
+                        <a href="#" class="footer-link-ultra">Badges</a>
+                        <a href="#" class="footer-link-ultra">Frames</a>
+                        <a href="#" class="footer-link-ultra">Stickers</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright-ultra">
+                © 2026 AniManSpace, Inc. All rights reserved. ✦ Neo Tokyo Sector • Version 2.0 Ultra ✦
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // ===== YULDUZLAR GENERATOR =====
+        function createStars() {
+            const starsLayer = document.getElementById('starsLayer');
+            const starCount = 600;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                
+                const size = Math.random() * 4 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                
+                star.style.animationDelay = Math.random() * 8 + 's';
+                star.style.animationDuration = Math.random() * 4 + 3 + 's';
+                
+                const colors = ['#ffffff', '#aaddff', '#ffccff', '#99ffff', '#ff99ff'];
+                star.style.background = colors[Math.floor(Math.random() * colors.length)];
+                star.style.boxShadow = `0 0 ${Math.random() * 20 + 5}px ${star.style.background}`;
+                
+                starsLayer.appendChild(star);
+            }
+        }
+        // ===== PARTICLE EFFECT =====
+        function createParticles() {
+            const particleLayer = document.getElementById('particleLayer');
+            const particleCount = 200;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.width = (Math.random() * 5 + 2) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.background = `rgba(${Math.random() * 100 + 155}, ${Math.random() * 100 + 155}, 255, ${Math.random() * 0.5 + 0.3})`;
+                
+                particleLayer.appendChild(particle);
+            }
+        }
+
+        // ===== ANIME CARD CLICK =====
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            createParticles();
+            
+            const animeCards = document.querySelectorAll('.anime-card-ultra');
+            animeCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const title = this.querySelector('.anime-title-ultra')?.textContent || 'Anime';
+                    alert(`🎬 ${title}\n🎥 4K Ultra HD • Dub/Sub\n📺 Watch now → Premium required`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+        
+        
