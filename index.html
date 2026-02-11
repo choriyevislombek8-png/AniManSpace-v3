@@ -3,57 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AniManSpace</title>
+    <title>AniManSpace | Neo Tokyo</title>
     <style>
-        body {
+        /* KOSMIK NEON TEMA */
+        * {
             margin: 0;
             padding: 0;
-            background: black;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 20% 30%, #0a0a1a, #03030a);
             color: white;
-            font-family: system-ui;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* YULDUZLAR */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: transparent;
+            animation: starsTwinkle 8s infinite;
+        }
+
+        @keyframes starsTwinkle {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        /* NEON CHIZIQLAR */
+        .neon-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translateY(0) translateX(0); }
+            100% { transform: translateY(50px) translateX(50px); }
+        }
+
+        /* ASOSIY KONTENT */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
         }
+
+        /* NEON LOGO */
         h1 {
-            font-size: 60px;
-            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            font-size: clamp(40px, 10vw, 100px);
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            animation: neonPulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes neonPulse {
+            from {
+                text-shadow: 
+                    0 0 10px #ff00ff,
+                    0 0 20px #ff00ff,
+                    0 0 30px #ff00ff,
+                    0 0 40px #00ffff,
+                    0 0 70px #00ffff,
+                    0 0 80px #00ffff;
+            }
+            to {
+                text-shadow: 
+                    0 0 20px #ff00ff,
+                    0 0 30px #ff00ff,
+                    0 0 40px #ff00ff,
+                    0 0 50px #00ffff,
+                    0 0 80px #00ffff,
+                    0 0 90px #00ffff;
+            }
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradientMove 3s ease infinite;
         }
-        p {
-            font-size: 24px;
-            color: #ccc;
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-        button {
-            padding: 15px 30px;
-            margin: 10px;
-            border: 2px solid #ff00ff;
+
+        /* SUBTITLE */
+        .subtitle {
+            font-size: clamp(16px, 5vw, 28px);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease;
+        }
+
+        /* NEON TUGMALAR */
+        .buttons {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 16px 48px;
+            font-size: 18px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
             background: transparent;
             color: #ff00ff;
-            border-radius: 30px;
-            font-size: 16px;
-            cursor: pointer;
+            border: 2px solid #ff00ff;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
         }
-        button:last-child {
-            border-color: #00ffff;
+
+        .btn-secondary {
+            background: transparent;
             color: #00ffff;
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
         }
-        button:hover {
-            box-shadow: 0 0 20px currentColor;
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px currentColor;
+        }
+
+        .btn-primary:hover {
+            background: #ff00ff;
+            color: black;
+        }
+
+        .btn-secondary:hover {
+            background: #00ffff;
+            color: black;
+        }
+
+        /* KOSMIK AYLANALAR */
+        .orb {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: orbFloat 20s infinite alternate;
+            pointer-events: none;
+        }
+
+        .orb1 {
+            top: 10%;
+            left: 10%;
+            background: #ff00ff;
+        }
+
+        .orb2 {
+            bottom: 10%;
+            right: 10%;
+            background: #00ffff;
+            animation-delay: -5s;
+        }
+
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-50px, -50px) scale(1.2); }
+        }
+
+        /* ANIME LINES */
+        .anime-lines {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .line {
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, #ff00ff, #00ffff, transparent);
+            left: 20%;
+            animation: lineMove 15s infinite;
+        }
+
+        .line2 {
+            left: 80%;
+            animation-delay: -7s;
+        }
+
+        @keyframes lineMove {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            h1 { font-size: 40px; }
+            .btn { padding: 12px 32px; }
         }
     </style>
 </head>
 <body>
-    <div>
-        <h1>AniManSpace</h1>
-        <p>Where Anime Meets AI</p>
-        <div>
-            <button>Explore</button>
-            <button>Join Community</button>
+    <!-- KOSMIK EFFEKTLAR -->
+    <div class="stars">✨</div>
+    <div class="neon-grid"></div>
+    <div class="anime-lines">
+        <div class="line"></div>
+        <div class="line line2"></div>
+    </div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+
+    <!-- ASOSIY KONTENT -->
+    <div class="container">
+        <h1>
+            <span class="gradient-text">AniManSpace</span>
+        </h1>
+        <p class="subtitle">✦ Where Anime Meets AI ✦</p>
+        
+        <div class="buttons">
+            <button class="btn btn-primary" onclick="alert('🚀 Neo Tokyo sektoriga xush kelibsiz!')">
+                Explore
+            </button>
+            <button class="btn btn-secondary" onclick="window.open('https://t.me/animanspace', '_blank')">
+                Join Community
+            </button>
+        </div>
+
+        <!-- KOSMIK STATUS -->
+        <div style="margin-top: 80px; opacity: 0.7;">
+            <p style="color: #ff00ff; text-shadow: 0 0 10px #ff00ff;">⚡ SYSTEM ONLINE ⚡</p>
+            <p style="color: #00ffff; text-shadow: 0 0 10px #00ffff; font-size: 14px; margin-top: 10px;">
+                NEO TOKYO SECTOR • 2088
+            </p>
         </div>
     </div>
+
+    <script>
+        // YULDUZLARNI YARATISH
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElement('div');
+                star.style.position = 'absolute';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.background = 'white';
+                star.style.borderRadius = '50%';
+                star.style.boxShadow = '0 0 10px white';
+                star.style.animation = `starsTwinkle ${Math.random() * 3 + 2}s infinite`;
+                starsContainer.appendChild(star);
+            }
+        }
+        createStars();
+    </script>
 </body>
 </html>
