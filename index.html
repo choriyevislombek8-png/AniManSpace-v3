@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AniManSpace | Neo Tokyo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>AniManSpace | Anime Universe</title>
+    
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
     <style>
-        /* KOSMIK NEON TEMA */
+        /* ===== GLOBAL STYLES ===== */
         * {
             margin: 0;
             padding: 0;
@@ -13,149 +17,179 @@
         }
 
         body {
-            background: radial-gradient(circle at 20% 30%, #0a0a1a, #03030a);
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(ellipse at 40% 40%, #0b0710, #03050c, #010101);
             color: white;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            min-height: 100vh;
-            position: relative;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* YULDUZLAR */
+        /* ===== ANIMATED STARS BACKGROUND ===== */
+        .stars, .twinkling, .clouds {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
         .stars {
+            background: black url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMiIgaGVpZ2h0PSIyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxjaXJjbGUgY3g9IjEiIGN5PSIxIiByPSIxIiBmaWxsPSJ3aGl0ZSIvPjwvc3ZnPg==') repeat;
+            animation: stars 200s linear infinite;
+            opacity: 0.8;
+        }
+
+        .twinkling {
+            background: transparent url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNCIgaGVpZ2h0PSI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxjaXJjbGUgY3g9IjIiIGN5PSIyIiByPSIxIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjgiLz48L3N2Zz4=') repeat;
+            animation: twinkle 8s infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes stars {
+            from { transform: translateY(0); }
+            to { transform: translateY(-2000px); }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.6; }
+        }
+
+        /* ===== PARTICLES ===== */
+        .particles {
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            background: transparent;
-            animation: starsTwinkle 8s infinite;
+            z-index: -1;
         }
 
-        @keyframes starsTwinkle {
-            0%, 100% { opacity: 0.8; }
-            50% { opacity: 1; }
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(0, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 20s infinite;
+            box-shadow: 0 0 15px cyan;
         }
 
-        /* NEON CHIZIQLAR */
-        .neon-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 0, 255, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            pointer-events: none;
-            animation: gridMove 20s linear infinite;
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
         }
 
-        @keyframes gridMove {
-            0% { transform: translateY(0) translateX(0); }
-            100% { transform: translateY(50px) translateX(50px); }
+        /* ===== GLASSMORPHISM ===== */
+        .glass-card {
+            background: rgba(10, 10, 30, 0.3);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
         }
 
-        /* ASOSIY KONTENT */
+        .glass-card:hover {
+            border-color: rgba(255, 0, 255, 0.4);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* ===== NEON TEXT ===== */
+        .neon-text {
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.7),
+                         0 0 20px rgba(255, 0, 255, 0.5),
+                         0 0 30px rgba(0, 255, 255, 0.3);
+        }
+
+        .cyan-neon {
+            text-shadow: 0 0 10px cyan, 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .pink-neon {
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+
+        /* ===== CONTAINER ===== */
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
             position: relative;
             z-index: 10;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            position: relative;
         }
 
-        /* NEON LOGO */
-        h1 {
-            font-size: clamp(40px, 10vw, 100px);
+        .hero-title {
+            font-size: clamp(40px, 12vw, 120px);
             font-weight: 800;
-            margin-bottom: 20px;
-            text-transform: uppercase;
             letter-spacing: 8px;
-            animation: neonPulse 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes neonPulse {
-            from {
-                text-shadow: 
-                    0 0 10px #ff00ff,
-                    0 0 20px #ff00ff,
-                    0 0 30px #ff00ff,
-                    0 0 40px #00ffff,
-                    0 0 70px #00ffff,
-                    0 0 80px #00ffff;
-            }
-            to {
-                text-shadow: 
-                    0 0 20px #ff00ff,
-                    0 0 30px #ff00ff,
-                    0 0 40px #ff00ff,
-                    0 0 50px #00ffff,
-                    0 0 80px #00ffff,
-                    0 0 90px #00ffff;
-            }
-        }
-
-        .gradient-text {
-            background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, #ff00ff, #00ffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-size: 200% 200%;
-            animation: gradientMove 3s ease infinite;
+            animation: titleGlow 3s infinite alternate;
         }
 
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes titleGlow {
+            from { filter: drop-shadow(0 0 20px rgba(255,0,255,0.3)); }
+            to { filter: drop-shadow(0 0 40px rgba(0,255,255,0.5)); }
         }
 
-        /* SUBTITLE */
-        .subtitle {
-            font-size: clamp(16px, 5vw, 28px);
+        .hero-subtitle {
+            font-size: clamp(18px, 5vw, 32px);
             color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             letter-spacing: 4px;
-            text-transform: uppercase;
-            animation: fadeInUp 1s ease;
         }
 
-        /* NEON TUGMALAR */
-        .buttons {
+        .hero-description {
+            font-size: clamp(14px, 4vw, 20px);
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 800px;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-group {
             display: flex;
-            gap: 30px;
+            gap: 20px;
             flex-wrap: wrap;
             justify-content: center;
-            margin-top: 20px;
         }
 
         .btn {
             padding: 16px 48px;
             font-size: 18px;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 4px;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             position: relative;
             overflow: hidden;
         }
 
         .btn-primary {
-            background: transparent;
-            color: #ff00ff;
-            border: 2px solid #ff00ff;
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+            background: linear-gradient(45deg, #ff00ff, #ff66cc);
+            color: white;
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
         }
 
         .btn-secondary {
@@ -166,139 +200,430 @@
         }
 
         .btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 40px currentColor;
+            transform: scale(1.05);
+            box-shadow: 0 0 50px currentColor;
         }
 
         .btn-primary:hover {
-            background: #ff00ff;
-            color: black;
+            background: linear-gradient(45deg, #ff66cc, #ff00ff);
         }
 
-        .btn-secondary:hover {
-            background: #00ffff;
-            color: black;
+        /* ===== AI COMPANION CARD ===== */
+        .ai-card {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            padding: 40px;
+            margin: 80px 0;
+            background: rgba(20, 10, 40, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            border-radius: 32px;
+            box-shadow: 0 0 50px rgba(255, 0, 255, 0.2);
+            flex-wrap: wrap;
         }
 
-        /* KOSMIK AYLANALAR */
-        .orb {
-            position: fixed;
-            width: 300px;
-            height: 300px;
+        .ai-image {
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.15;
-            animation: orbFloat 20s infinite alternate;
-            pointer-events: none;
+            background: radial-gradient(circle, #ff00ff80, #00ffff80);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            animation: floatImage 6s infinite alternate;
         }
 
-        .orb1 {
-            top: 10%;
-            left: 10%;
-            background: #ff00ff;
+        @keyframes floatImage {
+            from { transform: translateY(0); }
+            to { transform: translateY(-20px); }
         }
 
-        .orb2 {
-            bottom: 10%;
-            right: 10%;
-            background: #00ffff;
-            animation-delay: -5s;
+        .ai-bubble {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 30px;
+            border-left: 5px solid #00ffff;
+            position: relative;
+            backdrop-filter: blur(5px);
         }
 
-        @keyframes orbFloat {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(-50px, -50px) scale(1.2); }
-        }
-
-        /* ANIME LINES */
-        .anime-lines {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .line {
+        .ai-bubble:before {
+            content: '';
             position: absolute;
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent, #ff00ff, #00ffff, transparent);
-            left: 20%;
-            animation: lineMove 15s infinite;
+            left: -20px;
+            top: 30px;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-right-color: #00ffff;
         }
 
-        .line2 {
-            left: 80%;
-            animation-delay: -7s;
+        .ai-text {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: white;
         }
 
-        @keyframes lineMove {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
+        /* ===== FEATURE CARDS ===== */
+        .section-title {
+            font-size: 48px;
+            text-align: center;
+            margin: 60px 0 40px;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* RESPONSIVE */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            padding: 40px 30px;
+            text-align: center;
+            background: rgba(10, 10, 30, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: #ff00ff;
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.3);
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .feature-desc {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* ===== TRENDING GRID ===== */
+        .trending-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .anime-card {
+            background: rgba(10, 10, 30, 0.6);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .anime-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+        }
+
+        .anime-poster {
+            width: 100%;
+            aspect-ratio: 2/3;
+            background: linear-gradient(45deg, #1a1a3a, #2a1a4a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+
+        .anime-info {
+            padding: 15px;
+        }
+
+        .anime-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .anime-ep {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ===== COMMUNITY SECTION ===== */
+        .community-section {
+            text-align: center;
+            padding: 80px 40px;
+            margin: 60px 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255,0,255,0.1), transparent);
+            border-radius: 48px;
+        }
+
+        .community-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .community-features {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .community-feature {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .community-feature:before {
+            content: '✦';
+            margin-right: 10px;
+            color: #ff00ff;
+        }
+
+        .btn-community {
+            padding: 20px 60px;
+            font-size: 24px;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            color: black;
+            font-weight: 800;
+            margin-top: 30px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            margin-top: 100px;
+            padding: 60px 40px 30px;
+            background: rgba(5, 5, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 0, 255, 0.3);
+            border-radius: 48px 48px 0 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-link:hover {
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 24px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            h1 { font-size: 40px; }
+            .container { padding: 15px; }
+            .hero-title { font-size: 40px; }
             .btn { padding: 12px 32px; }
+            .ai-card { flex-direction: column; text-align: center; }
+            .ai-bubble:before { display: none; }
+            .section-title { font-size: 32px; }
+            .trending-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 480px) {
+            .trending-grid { grid-template-columns: 1fr; }
+            .community-features { flex-direction: column; gap: 15px; }
         }
     </style>
 </head>
 <body>
-    <!-- KOSMIK EFFEKTLAR -->
-    <div class="stars">✨</div>
-    <div class="neon-grid"></div>
-    <div class="anime-lines">
-        <div class="line"></div>
-        <div class="line line2"></div>
-    </div>
-    <div class="orb orb1"></div>
-    <div class="orb orb2"></div>
+    <!-- YULDUZLI FON -->
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    
+    <!-- PARTICLE EFFECT -->
+    <div class="particles" id="particles"></div>
 
-    <!-- ASOSIY KONTENT -->
     <div class="container">
-        <h1>
-            <span class="gradient-text">AniManSpace</span>
-        </h1>
-        <p class="subtitle">✦ Where Anime Meets AI ✦</p>
-        
-        <div class="buttons">
-            <button class="btn btn-primary" onclick="alert('🚀 Neo Tokyo sektoriga xush kelibsiz!')">
-                Explore
-            </button>
-            <button class="btn btn-secondary" onclick="window.open('https://t.me/animanspace', '_blank')">
-                Join Community
-            </button>
-        </div>
-
-        <!-- KOSMIK STATUS -->
-        <div style="margin-top: 80px; opacity: 0.7;">
-            <p style="color: #ff00ff; text-shadow: 0 0 10px #ff00ff;">⚡ SYSTEM ONLINE ⚡</p>
-            <p style="color: #00ffff; text-shadow: 0 0 10px #00ffff; font-size: 14px; margin-top: 10px;">
-                NEO TOKYO SECTOR • 2088
+        <!-- ===== HERO SECTION ===== -->
+        <section class="hero">
+            <h1 class="hero-title">AniManSpace</h1>
+            <h2 class="hero-subtitle cyan-neon">✦ Enter Your Anime Universe ✦</h2>
+            <p class="hero-description">
+                Stream anime, read manhwa, level up, and talk with your personal AI space guide.
             </p>
-        </div>
-    </div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="alert('🚀 Universga sayohat boshlandi!')">
+                    ▶ Start Exploring
+                </button>
+                <button class="btn btn-secondary" onclick="alert('🤖 AI hamrohingiz bilan tanishing!')">
+                    🤖 Talk to AI
+                </button>
+            </div>
+        </section>
 
-    <script>
-        // YULDUZLARNI YARATISH
-        function createStars() {
-            const starsContainer = document.querySelector('.stars');
-            for (let i = 0; i < 200; i++) {
-                const star = document.createElement('div');
-                star.style.position = 'absolute';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.width = Math.random() * 3 + 'px';
-                star.style.height = star.style.width;
-                star.style.background = 'white';
-                star.style.borderRadius = '50%';
-                star.style.boxShadow = '0 0 10px white';
-                star.style.animation = `starsTwinkle ${Math.random() * 3 + 2}s infinite`;
-                starsContainer.appendChild(star);
-            }
-        }
-        createStars();
-    </script>
-</body>
-</html>
+        <!-- ===== AI COMPANION SECTION ===== -->
+        <section class="ai-card">
+            <div class="ai-image">
+                ✦
+            </div>
+            <div class="ai-bubble">
+                <div class="ai-text">
+                    "Salom, kosmonavt 🌌 Qaysi olamga sayohat qilamiz?"
+                </div>
+                <button class="btn btn-primary" style="padding: 12px 32px; font-size: 16px;">
+                    Open AI Chat
+                </button>
+            </div>
+        </section>
+
+        <!-- ===== FEATURES SECTION ===== -->
+        <h2 class="section-title">✦ Galaxy Features ✦</h2>
+        <div class="features-grid">
+            <div class="feature-card glass-card">
+                <div class="feature-icon">🎬</div>
+                <h3 class="feature-title">Anime Streaming</h3>
+                <p class="feature-desc">Watch trending and classic anime in high quality.</p>
+            </div>
+            <div class="feature-card glass-card">
+                <div class="feature-icon">📖</div>
+                <h3 class="feature-title">Manhwa Reader</h3>
+                <p class="feature-desc">Smooth vertical scroll reader for your favorite series.</p>
+            </div>
+            <div class="feature-card glass-card">
+                <div class="feature-icon">🎮</div>
+                <h3 class="feature-title">Level & Rewards</h3>
+                <p class="feature-desc">Earn XP, unlock badges, and grow your anime journey.</p>
+            </div>
+        </div>
+
+        <!-- ===== TRENDING ANIME ===== -->
+        <h2 class="section-title">✦ Trending Now ✦</h2>
+        <div class="trending-grid">
+            <!-- 12 ta anime karta -->
+            <div class="anime-card">
+                <div class="anime-poster">🎌</div>
+                <div class="anime-info">
+                    <div class="anime-title">Solo Leveling</div>
+                    <div class="anime-ep">EP 24</div>
+                </div>
+            </div>
+            <div class="anime-card">
+                <div class="anime-poster">⚔️</div>
+                <div class="anime-info">
+                    <div class="anime-title">Demon Slayer</div>
+                    <div class="anime-ep">EP 55</div>
+                </div>
+            </div>
+            <div class="anime-card">
+                <div class="anime-poster">🤖</div>
+                <div class="anime-info">
+                    <div class="anime-title">Chainsaw Man</div>
+                    <div class="anime-ep">EP 12</div>
+                </div>
+            </div>
+            <div class="anime-card">
+                <div class="anime-poster">🌊</div>
+                <div class="anime-info">
+                    <div class="anime-title">Jujutsu Kaisen</div>
+                    <div class="anime-ep">EP 47</div>
+                </div>
+            </div>
+            <div class="anime-card">
+                <div class="anime-poster">✨</div>
+                <div class="anime-info">
+                    <div class="anime-title">One Piece</div>
+                    <div class="anime-ep">EP 1089</div>
+                </div>
+            </div>
+            <div class="anime-card">
+                <div class="anime-poster">⚡</div>
+                <div class="anime-info">
+                    <div class="anime-title">Naruto</div>
+                    <div class="anime-ep">EP 720</div>
+                </div>
+            </div>
+            <div class="anime-card">
+                <div class="anime-poster">🔥</div>
+                <div class="anime-info">
+                    <div class="anime-title">Attack on Titan</div>
+                    <div class="anime-ep">EP 87</div>
+                </div>
+            </div>
+            <div class="anime-card">
+                <div class="anime-poster">💀</div>
+                <div class="anime-info">
+                    <div class="anime-title">Death Note</div>
+                    <div class="anime-ep">EP 37</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== COMMUNITY SECTION ===== -->
+        <section class="community-section glass-card">
+            <h2 class="community-title pink-neon">Join the AniManSpace Community</h2>
+            <div class="community-features">
+                <span class="community-feature">Chat with fans</span>
+                <span class="community-feature">Share recommendations</span>
+                <span class="community-feature">Weekly rankings</span>
+            </div>
+            <button class="btn btn-community" onclick="window.open('https://t.me/animanspace', '_blank')">
+                ✦ Join Community ✦
+            </button>
+        </section>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">AniManSpace</div>
+                    <p style="color: rgba(255,255,255,0.6); margin-top: 20px;">
+                        Your universe. Your story. Your adventure.
+                    </p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 20px; color: #ff00ff;">Explore</h4>
+                    <div class="footer-links">
+                        <a href="#" class="footer-link">Anime</a>
+                        <a href="#" class="footer-link">Manhwa</a>
+                        <a href="#" class="footer-link">Community</a
