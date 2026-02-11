@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AniManSpace | AI Chat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(ellipse at 50% 30%, #0c0112, #08010c, #020005);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Kosmik fon */
+        .galaxy-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 70% 40%, #1a0933, #0a051a, #030107);
+            z-index: -2;
+        }
+
+        .stars-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(10, 5, 20, 0.7);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 0, 255, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #ff00ff;
+            text-shadow: 0 0 15px #ff00ff;
+        }
+
+        .nav-link.active {
+            color: #00ffff;
+            text-shadow: 0 0 15px #00ffff;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* Chat sahifasi sarlavhasi */
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title h1 {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff80ff, #80ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .page-title p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 18px;
+        }
+
+        /* AI Chat container */
+        .chat-container {
+            background: rgba(15, 8, 25, 0.6);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 0 60px rgba(255, 0, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+        }
+
+        /* Chat header */
+        .chat-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .ai-avatar-small {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #ff44ff, #9900ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
+        }
+
+        .chat-info h3 {
+            font-size: 22px;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .chat-info p {
+            color: rgba(0, 255, 255, 0.8);
+            font-size: 14px;
+        }
+
+        /* Chat messages */
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .message {
+            display: flex;
+            gap: 15px;
+            max-width: 80%;
+        }
+
+        .message.ai {
+            align-self: flex-start;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .ai .message-avatar {
+            background: radial-gradient(circle, #ff44ff, #9900ff);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+
+        .user .message-avatar {
+            background: radial-gradient(circle, #00ccff, #0066cc);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .message-content {
+            background: rgba(30, 20, 40, 0.8);
+            padding: 15px 20px;
+            border-radius: 20px;
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+
+        .ai .message-content {
+            border-left: 4px solid #ff00ff;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
+        }
+
+        .user .message-content {
+            border-right: 4px solid #00ffff;
+            background: rgba(0, 50, 80, 0.6);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+
+        .message-text {
+            font-size: 16px;
+            line-height: 1.5;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .message-time {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: right;
+        }
+
+        /* Chat input */
+        .chat-input-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chat-input {
+            flex: 1;
+            background: rgba(10, 5, 20, 0.8);
+            border: 2px solid rgba(255, 0, 255, 0.3);
+            border-radius: 50px;
+            padding: 15px 25px;
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .chat-input:focus {
+            border-color: #00ffff;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+        }
+
+        .chat-send {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            border: none;
+            color: black;
+            font-size: 24px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-send:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
+        }
+
+        /* Back button */
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: transparent;
+            border: 2px solid #ff00ff;
+            color: #ff00ff;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .back-button:hover {
+            background: #ff00ff;
+            color: black;
+            box-shadow: 0 0 30px #ff00ff;
+        }
+
+        @media (max-width: 768px) {
+            .header { padding: 15px 20px; }
+            .nav-links { gap: 15px; }
+            .message { max-width: 90%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="galaxy-bg"></div>
+    <div class="stars-layer" id="starsLayer"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <a href="index.html" class="logo">AniManSpace</a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="#" class="nav-link">Anime</a>
+            <a href="#" class="nav-link">Manhwa</a>
+            <a href="chat.html" class="nav-link active">AI Chat</a>
+            <a href="#" class="nav-link">Community</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-title">
+            <h1>🤖 AI Space Guide</h1>
+            <p>Your personal anime companion is here 24/7</p>
+        </div>
+
+        <!-- Chat Box -->
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="ai-avatar-small">✦</div>
+                <div class="chat-info">
+                    <h3>Nova - AI Assistant</h3>
+                    <p>● Online • Anime specialist</p>
+                </div>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <!-- AI Message -->
+                <div class="message ai">
+                    <div class="message-avatar">✦</div>
+                    <div class="message-content">
+                        <div class="message-text">
+                            Salom, kosmonavt! 🌌<br>
+                            Men AniManSpace sun'iy hamrohingman. Qaysi anime yoki manhwa haqida gaplashamiz?
+                        </div>
+                        <div class="message-time">hozir</div>
+                    </div>
+                </div>
+
+                <!-- Sample user message -->
+                <div class="message user">
+                    <div class="message-avatar">👤</div>
+                    <div class="message-content">
+                        <div class="message-text">
+                            Solo Leveling haqida ma'lumot bera olasizmi?
+                        </div>
+                        <div class="message-time">1 min oldin</div>
+                    </div>
+                </div>
+
+                <!-- AI Response -->
+                <div class="message ai">
+                    <div class="message-avatar">✦</div>
+                    <div class="message-content">
+                        <div class="message-text">
+                            Albatta! Solo Leveling - dunyodagi eng mashhur manhwalardan biri. <br><br>
+                            📖 Janr: Action, Fantasy, Adventure<br>
+                            🎬 Epizodlar: 200+<br>
+                            ⭐ Reyting: 9.8/10<br>
+                            Qiziqarli fakt: Sung Jin-Woo dunyodagi eng kuchli ovchiga aylanadi!
+                        </div>
+                        <div class="message-time">hozir</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Input -->
+            <div class="chat-input-container">
+                <input type="text" class="chat-input" placeholder="Anime yoki manhwa nomini yozing..." id="chatInput">
+                <button class="chat-send" id="sendButton" onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="index.html" class="back-button">← Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        // Yulduzlar yaratish
+        function createStars() {
+            const starsLayer = document.getElementById('starsLayer');
+            for (let i = 0; i < 300; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = (Math.random() * 3 + 1) + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 5 + 's';
+                starsLayer.appendChild(star);
+            }
+        }
+        createStars();
+
+        // Xabar yuborish funksiyasi
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (message === '') return;
+            
+            const chatMessages = document.getElementById('chatMessages');
+            
+            // User xabari
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user';
+            userMessage.innerHTML = `
+                <div class="message-avatar">👤</div>
+                <div class="message-content">
+                    <div class="message-text">${message}</div>
+                    <div class="message-time">hozir</div>
+                </div>
+            `;
+            chatMessages.appendChild(userMessage);
+            
+            // Input tozalash
+            input.value = '';
+            
+            // Scroll down
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // AI javobi (1 soniyadan keyin)
+            setTimeout(() => {
+                const aiMessage = document.createElement('div');
+                aiMessage.className = 'message ai';
+                aiMessage.innerHTML = `
+                    <div class="message-avatar">✦</div>
+                    <div class="message-content">
+                        <div class="message-text">
+                            Kechirasiz, hozircha men demo rejimdaman. Tez kunda to'liq AI chat ishga tushadi! 🌟
+                        </div>
+                        <div class="message-time">hozir</div>
+                    </div>
+                `;
+                chatMessages.appendChild(aiMessage);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1000);
+        }
+
+        // Enter tugmasi bilan yuborish
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+  </html>
