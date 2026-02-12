@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AniManSpace</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>AniManSpace — Ultimate Anime Hub</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
+        /* ---------- RESET & GLOBAL ---------- */
         * {
             margin: 0;
             padding: 0;
@@ -12,59 +18,125 @@
         }
 
         body {
-            background: #1a1b26;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: white;
-            padding: 30px;
+            font-family: 'Inter', sans-serif;
+            background: url('https://images.unsplash.com/photo-1506703719100-f0b3c5c4fb1b?q=80&w=2070&auto=format&fit=crop') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
             line-height: 1.5;
+            padding: 24px;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* ---------- KOSMIK QORALAYICI ---------- */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(5, 7, 15, 0.75) 0%, rgba(3, 5, 12, 0.95) 100%);
+            pointer-events: none;
+            z-index: 0;
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
-        /* ===== NAVIGATION ===== */
+        /* ---------- GLASSMORPHISM ---------- */
+        .glass-card {
+            background: rgba(12, 16, 28, 0.55);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+            transition: all 0.25s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(0, 210, 255, 0.4);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.25);
+        }
+
+        /* ---------- NEON GLOW ---------- */
+        .neon-blue {
+            border-color: rgba(0, 210, 255, 0.5) !important;
+            box-shadow: 0 0 18px rgba(0, 210, 255, 0.4);
+        }
+
+        .neon-pink {
+            border-color: rgba(255, 59, 155, 0.5) !important;
+            box-shadow: 0 0 18px rgba(255, 59, 155, 0.4);
+        }
+
+        .neon-text {
+            text-shadow: 0 0 8px rgba(0, 210, 255, 0.7);
+        }
+
+        /* ---------- TYPOGRAPHY ---------- */
+        h1, h2, h3, .logo {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        /* ---------- NAVIGATION ---------- */
         .nav {
             display: flex;
             align-items: center;
-            gap: 40px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #2f3a4a;
+            justify-content: space-between;
+            padding: 16px 28px;
             margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 16px;
         }
 
         .logo {
             font-size: 24px;
-            font-weight: 700;
-            color: white;
+            background: linear-gradient(135deg, #fff, #e0e0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .nav-links {
             display: flex;
             gap: 28px;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
-            color: #c0c4d0;
+            color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
             font-size: 15px;
+            font-weight: 500;
+            transition: 0.2s;
         }
 
-        /* ===== SEARCH ===== */
+        .nav-links a:hover {
+            color: #00d2ff;
+            text-shadow: 0 0 8px #00d2ff;
+        }
+
+        /* ---------- SEARCH ---------- */
         .search {
-            background: #242636;
-            border-radius: 100px;
-            padding: 12px 24px;
             display: flex;
             align-items: center;
             gap: 12px;
-            width: 400px;
-            margin-bottom: 35px;
+            padding: 12px 24px;
+            width: 100%;
+            max-width: 420px;
+            margin-bottom: 36px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .search span {
-            color: #8f9aa7;
+        .search i {
+            color: rgba(255, 255, 255, 0.7);
             font-size: 18px;
         }
 
@@ -78,17 +150,18 @@
         }
 
         .search input::placeholder {
-            color: #8f9aa7;
+            color: rgba(200, 200, 220, 0.7);
+            font-weight: 400;
         }
 
-        /* ===== 2 COLUMN ===== */
-        .grid {
+        /* ---------- LAYOUT: 2 COLUMN ---------- */
+        .dashboard {
             display: grid;
-            grid-template-columns: 1fr 320px;
+            grid-template-columns: 1fr 340px;
             gap: 30px;
         }
 
-        /* ===== CARDS ===== */
+        /* ---------- CARDS (BLEACH / HANGING) ---------- */
         .cards-row {
             display: flex;
             gap: 20px;
@@ -96,48 +169,51 @@
         }
 
         .card {
-            background: #242636;
-            border-radius: 20px;
-            padding: 20px;
             flex: 1;
+            padding: 22px 20px;
         }
 
         .card h3 {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
             margin-bottom: 4px;
             color: white;
         }
 
         .card p {
-            color: #a4a9b7;
-            font-size: 13px;
-            margin-bottom: 12px;
+            color: rgba(220, 220, 245, 0.8);
+            font-size: 14px;
+            margin-bottom: 14px;
         }
 
         .stars {
             color: #ffc107;
-            font-size: 16px;
-            letter-spacing: 3px;
+            font-size: 18px;
+            letter-spacing: 4px;
         }
 
-        /* ===== NEW EPISODES ===== */
+        .stars i {
+            margin-right: 2px;
+        }
+
+        /* ---------- NEW EPISODES ---------- */
         .new-episodes {
-            background: #242636;
-            border-radius: 20px;
             padding: 24px;
         }
 
         .section-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
             margin-bottom: 20px;
             color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .episode-item {
-            padding: 16px 0;
-            border-bottom: 1px solid #2f3a4a;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .episode-item:last-child {
@@ -146,30 +222,37 @@
 
         .episode-title {
             font-weight: 700;
-            font-size: 15px;
-            margin-bottom: 4px;
+            font-size: 16px;
+            margin-bottom: 6px;
             color: white;
         }
 
         .episode-meta {
-            color: #a4a9b7;
-            font-size: 13px;
-            margin-bottom: 2px;
+            color: rgba(200, 200, 230, 0.8);
+            font-size: 14px;
+            margin-bottom: 4px;
         }
 
-        /* ===== COMMUNITY ===== */
+        .episode-stars {
+            margin-top: 8px;
+            color: #ffc107;
+            font-size: 16px;
+            letter-spacing: 3px;
+        }
+
+        /* ---------- COMMUNITY CHAT ---------- */
         .community {
-            background: #242636;
-            border-radius: 20px;
             padding: 24px;
             margin-bottom: 30px;
         }
 
         .community h3 {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
-            margin-bottom: 20px;
-            color: white;
+            margin-bottom: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .chat-row {
@@ -177,97 +260,180 @@
             justify-content: space-between;
             align-items: center;
             padding: 12px 0;
-            border-bottom: 1px solid #2f3a4a;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .chat-user {
+            font-weight: 600;
             color: white;
-            font-size: 14px;
+            font-size: 15px;
         }
 
         .chat-time {
-            color: #a4a9b7;
+            color: rgba(200, 200, 230, 0.8);
             font-size: 14px;
         }
 
-        .chat-input {
-            background: #1a1b26;
-            border-radius: 100px;
-            padding: 12px 20px;
-            color: #a4a9b7;
-            font-size: 14px;
-            margin: 16px 0 12px;
+        .chat-input-area {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 60px;
+            padding: 8px 8px 8px 24px;
+            border: 1px solid rgba(0, 210, 255, 0.4);
+            box-shadow: 0 0 16px rgba(0, 210, 255, 0.2);
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .chat-input-area input::placeholder {
+            color: rgba(220, 220, 245, 0.7);
+        }
+
+        .chat-send {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+            border: none;
+            color: white;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 20px #00d2ff;
+            transition: 0.2s;
+        }
+
+        .chat-send:hover {
+            transform: scale(1.08);
         }
 
         .user-level {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 8px;
-            color: white;
-            font-size: 14px;
+            margin-top: 18px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 15px;
         }
 
         .level {
-            color: #a4a9b7;
+            color: rgba(220, 220, 245, 0.8);
         }
 
-        /* ===== OFFLINE ===== */
+        /* ---------- OFFLINE DOWNLOADS ---------- */
         .offline {
-            background: #242636;
-            border-radius: 20px;
             padding: 24px;
         }
 
         .offline h3 {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
-            margin-bottom: 20px;
-            color: white;
+            margin-bottom: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 0 0 8px #ff3b9b;
+        }
+
+        .offline h3 i {
+            color: #ff3b9b;
         }
 
         .download-item {
-            padding: 14px 0;
-            border-bottom: 1px solid #2f3a4a;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            gap: 14px;
             color: white;
-            font-size: 15px;
+            font-size: 16px;
+            font-weight: 500;
         }
 
         .download-item:last-child {
             border-bottom: none;
         }
 
-        /* ===== FOOTER ===== */
+        .download-item i {
+            color: #00d2ff;
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* ---------- FOOTER ---------- */
         .footer {
-            margin-top: 50px;
-            padding-top: 25px;
-            border-top: 1px solid #2f3a4a;
+            margin-top: 60px;
+            padding: 24px 32px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .footer-links {
             display: flex;
-            gap: 30px;
+            gap: 32px;
+            flex-wrap: wrap;
         }
 
         .footer-links a {
-            color: #c0c4d0;
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #00d2ff;
+            text-shadow: 0 0 8px #00d2ff;
         }
 
         .copyright {
-            color: #8f9aa7;
+            color: rgba(200, 200, 230, 0.7);
             font-size: 14px;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 900px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            .cards-row {
+                flex-direction: column;
+            }
+            .nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 16px; }
+            .nav-links { gap: 20px; }
+            .footer { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- ===== NAVIGATION ===== -->
-        <div class="nav">
+        <!-- ===== NAVIGATION (AYNAN RASMDAGI) ===== -->
+        <div class="nav glass-card">
             <div class="logo">AniManSpace</div>
             <div class="nav-links">
                 <a href="#">Home</a>
@@ -279,103 +445,138 @@
             </div>
         </div>
 
-        <!-- ===== SEARCH ===== -->
-        <div class="search">
-            <span>🔍</span>
+        <!-- ===== SEARCH BAR (NEON BLUE) ===== -->
+        <div class="search glass-card neon-blue">
+            <i class="fas fa-search"></i>
             <input type="text" placeholder="Anime yoki Manhwa qidir...">
         </div>
 
-        <!-- ===== MAIN GRID ===== -->
-        <div class="grid">
+        <!-- ===== MAIN DASHBOARD ===== -->
+        <div class="dashboard">
             <!-- LEFT COLUMN -->
             <div>
-                <!-- CARDS ROW -->
+                <!-- CARDS (BLEACH / HANGING) -->
                 <div class="cards-row">
                     <!-- BLEACH CARD -->
-                    <div class="card">
+                    <div class="card glass-card">
                         <h3>Bleach</h3>
                         <p>Thousand-Year Blood War</p>
-                        <div class="stars">★★★★☆</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>  <!-- 4 stars, empty 5th -->
+                        </div>
                     </div>
                     <!-- HANGING CARD -->
-                    <div class="card">
+                    <div class="card glass-card">
                         <h3>Hanging</h3>
-                        <p style="opacity: 0;">_</p>
-                        <div class="stars">★★★★☆</div>
+                        <p style="opacity: 0; user-select: none;">_</p> <!-- bo'sh joy, rasmda hech narsa yo'q -->
+                        <div class="stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
                     </div>
                 </div>
 
-                <!-- NEW EPISODES -->
-                <div class="new-episodes">
-                    <div class="section-title">New Episodes</div>
-                    
-                    <div class="episode-item">
-                        <div class="episode-title">Episode 3</div>
-                        <div class="episode-meta">Born BS</div>
-                        <div class="episode-meta">Anime: Amail • Wallace G</div>
-                        <div class="stars" style="margin-top: 8px;">★★★★☆</div>
+                <!-- NEW EPISODES (AYNAN 3 QATOR) -->
+                <div class="new-episodes glass-card">
+                    <div class="section-title">
+                        <i class="fas fa-fire" style="color: #ff6b6b;"></i> New Episodes
                     </div>
                     
                     <div class="episode-item">
                         <div class="episode-title">Episode 3</div>
                         <div class="episode-meta">Born BS</div>
                         <div class="episode-meta">Anime: Amail • Wallace G</div>
-                        <div class="stars" style="margin-top: 8px;">★★★★☆</div>
+                        <div class="episode-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
                     </div>
                     
                     <div class="episode-item">
                         <div class="episode-title">Episode 3</div>
                         <div class="episode-meta">Born BS</div>
                         <div class="episode-meta">Anime: Amail • Wallace G</div>
-                        <div class="stars" style="margin-top: 8px;">★★★★☆</div>
+                        <div class="episode-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="episode-item">
+                        <div class="episode-title">Episode 3</div>
+                        <div class="episode-meta">Born BS</div>
+                        <div class="episode-meta">Anime: Amail • Wallace G</div>
+                        <div class="episode-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- RIGHT COLUMN -->
             <div>
-                <!-- COMMUNITY CHAT -->
-                <div class="community">
-                    <h3>Community Chat</h3>
+                <!-- COMMUNITY CHAT (NEON BLUE) -->
+                <div class="community glass-card neon-blue">
+                    <h3>
+                        <i class="fas fa-comments" style="color: #00d2ff;"></i> Community Chat
+                    </h3>
                     
                     <div class="chat-row">
                         <span class="chat-user">Isomm Sters</span>
                         <span class="chat-time">19:85</span>
                     </div>
-                    
                     <div class="chat-row">
                         <span class="chat-user">Orus</span>
                         <span class="chat-time">12.16</span>
                     </div>
-                    
                     <div class="chat-row">
                         <span class="chat-user">Yukari</span>
                         <span class="chat-time">12.16</span>
                     </div>
                     
-                    <div class="chat-input">
-                        Kosmosga xabar yoz...
+                    <!-- INPUT (KOSMOSGA XABAR YOZ...) -->
+                    <div class="chat-input-area">
+                        <input type="text" placeholder="Kosmosga xabar yoz...">
+                        <button class="chat-send">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
                     </div>
                     
+                    <!-- YUKARI LV:7 -->
                     <div class="user-level">
-                        <span>Yukari</span>
+                        <span style="font-weight: 600;">Yukari</span>
                         <span class="level">Lv: 7</span>
                     </div>
                 </div>
 
-                <!-- OFFLINE DOWNLOADS -->
-                <div class="offline">
-                    <h3>Offline Downloads</h3>
+                <!-- OFFLINE DOWNLOADS (NEON PINK) -->
+                <div class="offline glass-card neon-pink">
+                    <h3>
+                        <i class="fas fa-download"></i> Offline Downloads
+                    </h3>
                     
-                    <div class="download-item">Episode 3</div>
-                    <div class="download-item">Episode 3</div>
-                    <div class="download-item">Episode 3</div>
+                    <div class="download-item">
+                        <i class="fas fa-play-circle"></i> Episode 3
+                    </div>
+                    <div class="download-item">
+                        <i class="fas fa-play-circle"></i> Episode 3
+                    </div>
+                    <div class="download-item">
+                        <i class="fas fa-play-circle"></i> Episode 3
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- ===== FOOTER ===== -->
-        <div class="footer">
+        <!-- ===== FOOTER (AYNAN RASMDAGI) ===== -->
+        <div class="footer glass-card">
             <div class="footer-links">
                 <a href="#">Home</a>
                 <a href="#">Anime & Manhwa</a>
@@ -389,4 +590,4 @@
         </div>
     </div>
 </body>
-                </html>
+                                                          </html>
