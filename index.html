@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>AniManSpace — Ultimate Anime Hub</title>
+    <title>AniManSpace — Exactly as Designed</title>
     
     <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* ---------- RESET & GLOBAL ---------- */
+        /* ---------- RESET & COSMIC BACKGROUND ---------- */
         * {
             margin: 0;
             padding: 0;
@@ -19,16 +19,17 @@
 
         body {
             font-family: 'Inter', sans-serif;
+            background: #0b0d17; /* fallback */
             background: url('https://images.unsplash.com/photo-1506703719100-f0b3c5c4fb1b?q=80&w=2070&auto=format&fit=crop') no-repeat center center fixed;
             background-size: cover;
-            color: #fff;
-            line-height: 1.5;
-            padding: 24px;
+            color: white;
+            padding: 28px 24px;
             min-height: 100vh;
             position: relative;
+            line-height: 1.5;
         }
 
-        /* ---------- KOSMIK QORALAYICI ---------- */
+        /* ---------- DARK OVERLAY (YULDUZLAR KO'RINSIN) ---------- */
         body::before {
             content: '';
             position: fixed;
@@ -36,7 +37,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(5, 7, 15, 0.75) 0%, rgba(3, 5, 12, 0.95) 100%);
+            background: radial-gradient(circle at 50% 50%, rgba(8, 10, 18, 0.82) 0%, rgba(4, 5, 12, 0.96) 100%);
             pointer-events: none;
             z-index: 0;
         }
@@ -48,58 +49,48 @@
             z-index: 2;
         }
 
-        /* ---------- GLASSMORPHISM ---------- */
-        .glass-card {
-            background: rgba(12, 16, 28, 0.55);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        /* ---------- GLASS CARD (SOFT, ORTIQCHA YO'Q) ---------- */
+        .glass {
+            background: rgba(18, 22, 35, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 24px;
-            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
-            transition: all 0.25s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        .glass-card:hover {
-            border-color: rgba(0, 210, 255, 0.4);
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.25);
+        /* ---------- NEON ACCENT (FAKAT KERAKLI JOYDA) ---------- */
+        .neon-border-blue {
+            border: 1px solid rgba(0, 210, 255, 0.5);
+            box-shadow: 0 0 16px rgba(0, 210, 255, 0.3);
         }
 
-        /* ---------- NEON GLOW ---------- */
-        .neon-blue {
-            border-color: rgba(0, 210, 255, 0.5) !important;
-            box-shadow: 0 0 18px rgba(0, 210, 255, 0.4);
-        }
-
-        .neon-pink {
-            border-color: rgba(255, 59, 155, 0.5) !important;
-            box-shadow: 0 0 18px rgba(255, 59, 155, 0.4);
-        }
-
-        .neon-text {
-            text-shadow: 0 0 8px rgba(0, 210, 255, 0.7);
+        .neon-border-pink {
+            border: 1px solid rgba(255, 59, 155, 0.5);
+            box-shadow: 0 0 16px rgba(255, 59, 155, 0.3);
         }
 
         /* ---------- TYPOGRAPHY ---------- */
         h1, h2, h3, .logo {
-            font-family: 'Poppins', sans-serif;
             font-weight: 700;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.01em;
         }
 
-        /* ---------- NAVIGATION ---------- */
+        /* ---------- NAVIGATION — AYNAN 326.png ---------- */
         .nav {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 16px 28px;
-            margin-bottom: 30px;
+            margin-bottom: 32px;
             flex-wrap: wrap;
             gap: 16px;
         }
 
         .logo {
             font-size: 24px;
-            background: linear-gradient(135deg, #fff, #e0e0ff);
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #e0e4ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -111,19 +102,17 @@
         }
 
         .nav-links a {
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
             font-size: 15px;
             font-weight: 500;
-            transition: 0.2s;
         }
 
         .nav-links a:hover {
             color: #00d2ff;
-            text-shadow: 0 0 8px #00d2ff;
         }
 
-        /* ---------- SEARCH ---------- */
+        /* ---------- SEARCH BAR — AYNAN "Anime yoki Manhwa qidir..." ---------- */
         .search {
             display: flex;
             align-items: center;
@@ -131,8 +120,7 @@
             padding: 12px 24px;
             width: 100%;
             max-width: 420px;
-            margin-bottom: 36px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
         }
 
         .search i {
@@ -150,18 +138,18 @@
         }
 
         .search input::placeholder {
-            color: rgba(200, 200, 220, 0.7);
+            color: rgba(210, 220, 240, 0.8);
             font-weight: 400;
         }
 
-        /* ---------- LAYOUT: 2 COLUMN ---------- */
+        /* ---------- 2 COLUMN LAYOUT ---------- */
         .dashboard {
             display: grid;
             grid-template-columns: 1fr 340px;
             gap: 30px;
         }
 
-        /* ---------- CARDS (BLEACH / HANGING) ---------- */
+        /* ---------- BLEACH / HANGING CARDS ---------- */
         .cards-row {
             display: flex;
             gap: 20px;
@@ -170,22 +158,23 @@
 
         .card {
             flex: 1;
-            padding: 22px 20px;
+            padding: 22px 22px;
         }
 
         .card h3 {
             font-size: 20px;
             font-weight: 700;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             color: white;
         }
 
         .card p {
-            color: rgba(220, 220, 245, 0.8);
+            color: rgba(220, 230, 250, 0.8);
             font-size: 14px;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
         }
 
+        /* ---------- YULDUZCHALAR — 4.0 (4 to'liq, 1 bo'sh) ---------- */
         .stars {
             color: #ffc107;
             font-size: 18px;
@@ -196,7 +185,7 @@
             margin-right: 2px;
         }
 
-        /* ---------- NEW EPISODES ---------- */
+        /* ---------- NEW EPISODES — AYNAN 326.png, 332.jpg ---------- */
         .new-episodes {
             padding: 24px;
         }
@@ -211,9 +200,13 @@
             gap: 10px;
         }
 
+        .section-title i {
+            color: #ff8a5c;
+        }
+
         .episode-item {
             padding: 18px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .episode-item:last-child {
@@ -228,7 +221,7 @@
         }
 
         .episode-meta {
-            color: rgba(200, 200, 230, 0.8);
+            color: rgba(200, 215, 240, 0.85);
             font-size: 14px;
             margin-bottom: 4px;
         }
@@ -240,7 +233,7 @@
             letter-spacing: 3px;
         }
 
-        /* ---------- COMMUNITY CHAT ---------- */
+        /* ---------- COMMUNITY CHAT — AYNAN BARCHA DETALLAR ---------- */
         .community {
             padding: 24px;
             margin-bottom: 30px;
@@ -255,12 +248,16 @@
             gap: 10px;
         }
 
+        .community h3 i {
+            color: #00d2ff;
+        }
+
         .chat-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .chat-user {
@@ -270,10 +267,11 @@
         }
 
         .chat-time {
-            color: rgba(200, 200, 230, 0.8);
+            color: rgba(210, 225, 245, 0.8);
             font-size: 14px;
         }
 
+        /* ---------- KOSMOSGA XABAR YOZ... (AYNAN SHU YOZUV) ---------- */
         .chat-input-area {
             margin-top: 20px;
             display: flex;
@@ -282,8 +280,7 @@
             background: rgba(0, 0, 0, 0.3);
             border-radius: 60px;
             padding: 8px 8px 8px 24px;
-            border: 1px solid rgba(0, 210, 255, 0.4);
-            box-shadow: 0 0 16px rgba(0, 210, 255, 0.2);
+            border: 1px solid rgba(0, 210, 255, 0.5);
         }
 
         .chat-input-area input {
@@ -296,7 +293,8 @@
         }
 
         .chat-input-area input::placeholder {
-            color: rgba(220, 220, 245, 0.7);
+            color: rgba(220, 235, 255, 0.8);
+            font-weight: 400;
         }
 
         .chat-send {
@@ -311,29 +309,24 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 0 20px #00d2ff;
-            transition: 0.2s;
         }
 
-        .chat-send:hover {
-            transform: scale(1.08);
-        }
-
+        /* ---------- YUKARI Lv: 7 (AYNAN SHUNDAY) ---------- */
         .user-level {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-top: 18px;
-            padding-top: 10px;
+            padding-top: 12px;
             border-top: 1px solid rgba(255, 255, 255, 0.06);
             font-size: 15px;
         }
 
         .level {
-            color: rgba(220, 220, 245, 0.8);
+            color: rgba(210, 225, 245, 0.8);
         }
 
-        /* ---------- OFFLINE DOWNLOADS ---------- */
+        /* ---------- OFFLINE DOWNLOADS — EPISODE 3 (3x) ---------- */
         .offline {
             padding: 24px;
         }
@@ -345,7 +338,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            text-shadow: 0 0 8px #ff3b9b;
         }
 
         .offline h3 i {
@@ -374,7 +366,7 @@
             text-align: center;
         }
 
-        /* ---------- FOOTER ---------- */
+        /* ---------- FOOTER — AYNAN 326.png / 332.jpg ---------- */
         .footer {
             margin-top: 60px;
             padding: 24px 32px;
@@ -392,20 +384,14 @@
         }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
             font-size: 15px;
             font-weight: 500;
-            transition: 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: #00d2ff;
-            text-shadow: 0 0 8px #00d2ff;
         }
 
         .copyright {
-            color: rgba(200, 200, 230, 0.7);
+            color: rgba(200, 215, 240, 0.7);
             font-size: 14px;
         }
 
@@ -424,7 +410,7 @@
         }
 
         @media (max-width: 600px) {
-            body { padding: 16px; }
+            body { padding: 18px; }
             .nav-links { gap: 20px; }
             .footer { flex-direction: column; align-items: flex-start; }
         }
@@ -432,8 +418,8 @@
 </head>
 <body>
     <div class="container">
-        <!-- ===== NAVIGATION (AYNAN RASMDAGI) ===== -->
-        <div class="nav glass-card">
+        <!-- ===== NAVIGATION — HOME | ANIME | MANHWA | COMMUNITY CHAT | OFFLINE | PROFILE ===== -->
+        <div class="nav glass">
             <div class="logo">AniManSpace</div>
             <div class="nav-links">
                 <a href="#">Home</a>
@@ -445,8 +431,8 @@
             </div>
         </div>
 
-        <!-- ===== SEARCH BAR (NEON BLUE) ===== -->
-        <div class="search glass-card neon-blue">
+        <!-- ===== SEARCH BAR — "Anime yoki Manhwa qidir..." ===== -->
+        <div class="search glass">
             <i class="fas fa-search"></i>
             <input type="text" placeholder="Anime yoki Manhwa qidir...">
         </div>
@@ -455,22 +441,22 @@
         <div class="dashboard">
             <!-- LEFT COLUMN -->
             <div>
-                <!-- CARDS (BLEACH / HANGING) -->
+                <!-- BLEACH & HANGING CARDS -->
                 <div class="cards-row">
-                    <!-- BLEACH CARD -->
-                    <div class="card glass-card">
+                    <!-- BLEACH — Thousand-Year Blood War, 4 stars -->
+                    <div class="card glass">
                         <h3>Bleach</h3>
                         <p>Thousand-Year Blood War</p>
                         <div class="stars">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i>
                             <i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>  <!-- 4 stars, empty 5th -->
+                            <i class="far fa-star"></i>
                         </div>
                     </div>
-                    <!-- HANGING CARD -->
-                    <div class="card glass-card">
+                    <!-- HANGING — no subtitle, 4 stars -->
+                    <div class="card glass">
                         <h3>Hanging</h3>
-                        <p style="opacity: 0; user-select: none;">_</p> <!-- bo'sh joy, rasmda hech narsa yo'q -->
+                        <p style="opacity: 0; user-select: none;">—</p>
                         <div class="stars">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i>
                             <i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -479,10 +465,10 @@
                     </div>
                 </div>
 
-                <!-- NEW EPISODES (AYNAN 3 QATOR) -->
-                <div class="new-episodes glass-card">
+                <!-- NEW EPISODES — 3 ta "Episode 3" aynan rasmdagidek -->
+                <div class="new-episodes glass">
                     <div class="section-title">
-                        <i class="fas fa-fire" style="color: #ff6b6b;"></i> New Episodes
+                        <i class="fas fa-fire"></i> New Episodes
                     </div>
                     
                     <div class="episode-item">
@@ -522,10 +508,10 @@
 
             <!-- RIGHT COLUMN -->
             <div>
-                <!-- COMMUNITY CHAT (NEON BLUE) -->
-                <div class="community glass-card neon-blue">
+                <!-- COMMUNITY CHAT — AYNAN 326.png -->
+                <div class="community glass neon-border-blue">
                     <h3>
-                        <i class="fas fa-comments" style="color: #00d2ff;"></i> Community Chat
+                        <i class="fas fa-comments"></i> Community Chat
                     </h3>
                     
                     <div class="chat-row">
@@ -541,7 +527,7 @@
                         <span class="chat-time">12.16</span>
                     </div>
                     
-                    <!-- INPUT (KOSMOSGA XABAR YOZ...) -->
+                    <!-- "Kosmosga xabar yoz..." -->
                     <div class="chat-input-area">
                         <input type="text" placeholder="Kosmosga xabar yoz...">
                         <button class="chat-send">
@@ -549,15 +535,15 @@
                         </button>
                     </div>
                     
-                    <!-- YUKARI LV:7 -->
+                    <!-- Yukari Lv: 7 -->
                     <div class="user-level">
                         <span style="font-weight: 600;">Yukari</span>
                         <span class="level">Lv: 7</span>
                     </div>
                 </div>
 
-                <!-- OFFLINE DOWNLOADS (NEON PINK) -->
-                <div class="offline glass-card neon-pink">
+                <!-- OFFLINE DOWNLOADS — 3x Episode 3 -->
+                <div class="offline glass neon-border-pink">
                     <h3>
                         <i class="fas fa-download"></i> Offline Downloads
                     </h3>
@@ -575,8 +561,8 @@
             </div>
         </div>
 
-        <!-- ===== FOOTER (AYNAN RASMDAGI) ===== -->
-        <div class="footer glass-card">
+        <!-- ===== FOOTER — Home | Anime & Manhwa | Community Chat | Offline | Profile ===== -->
+        <div class="footer glass">
             <div class="footer-links">
                 <a href="#">Home</a>
                 <a href="#">Anime & Manhwa</a>
@@ -590,4 +576,4 @@
         </div>
     </div>
 </body>
-                                                          </html>
+</html>
