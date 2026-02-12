@@ -1,14 +1,19 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import ParticlesBackground from "@/components/ParticlesBackground";
-import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AniManSpace - Anime & Manhwa Universe",
-  description: "Enter your anime universe",
+  title: "AniManSpace - Your Personal Anime Galaxy",
+  description:
+    "Stream anime, read manhwa, level up, and chat with the community - all in one cosmic universe.",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#050d1a",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -18,17 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="uz" suppressHydrationWarning>
-      <body className={`${inter.className} antialiased bg-black text-white min-h-screen overflow-x-hidden`}>
-        {/* Kosmik fon */}
-        <ParticlesBackground />
-
-        {/* Asosiy kontent */}
-        <div className="relative z-10">
-          {children}
-        </div>
-
-        <Toaster richColors theme="dark" position="top-center" />
-      </body>
+      <body className={`${inter.className} antialiased`}>{children}</body>
     </html>
   );
 }
